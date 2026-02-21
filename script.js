@@ -40,10 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const viewerFilename = document.getElementById('viewer-filename');
     const WORKER_URL = 'https://gakkum-monitoring-api.karantinaikanbitung.workers.dev';
     const boxPemusnahan = document.getElementById('box-pemusnahan');
+    const boxPenolakan = document.getElementById('box-penolakan');
     let currentUploadContext = null;
-    let currentDocId = null;
+    let currentDocId = null; // To track which document we are working on
     let uploadedFiles = {};
 
+    // Render Table
     // Render Table
     function renderTable(data) {
         tableBody.innerHTML = '';
@@ -71,136 +73,110 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ... (rest of code) ...
+
+
+
     // Modal Logic
     window.openDetail = (id) => {
         currentDocId = id;
-        localStorage.setItem('lastDocId', id);
+        localStorage.setItem('activeDocId', id);
         modal.style.display = 'flex';
         resetView();
         checkExistingFiles(id);
     };
 
     async function checkExistingFiles(id) {
-        // First, try to load from localStorage for immediate UI feedback
-        const savedData = localStorage.getItem(`files_${id}`);
-        if (savedData) {
-            uploadedFiles = JSON.parse(savedData);
-            Object.keys(uploadedFiles).forEach(ctx => {
-                updateUIIndicator(ctx, true);
-            });
-        }
-
         const contexts = ['LI', 'Kronologi', 'PUL BAKET', 'Penolakan', 'Pemusnahan'];
+        const docIdAtStart = id;
+
         for (const ctx of contexts) {
             try {
-                const response = await fetch(`${WORKER_URL}/check/${id}/${ctx}`);
-                if (!response.ok) {
-                    // If not found on server, but we have a local flag or it was deleted, sync
-                    continue;
-                }
+                // If user closed modal or switched doc, stop checking
+                if (currentDocId !== docIdAtStart) return;
 
+                const response = await fetch(`${WORKER_URL}/check/${encodeURIComponent(id)}/${encodeURIComponent(ctx)}`);
                 const data = await response.json();
+
+                if (currentDocId !== docIdAtStart) return;
+
                 if (data.exists) {
                     uploadedFiles[ctx] = {
                         name: data.filename,
-                        url: `${WORKER_URL}/view/${id}/${ctx}/${data.filename}`
+                        url: `${WORKER_URL}/view/${encodeURIComponent(id)}/${encodeURIComponent(ctx)}/${encodeURIComponent(data.filename)}`
                     };
+
+                    // Update UI indicators
                     updateUIIndicator(ctx, true);
-                } else if (uploadedFiles[ctx] && !uploadedFiles[ctx].isLocal) {
-                    // Sync: if server says it doesn't exist and we thought it was a remote file, remove it
-                    delete uploadedFiles[ctx];
-                    updateUIIndicator(ctx, false);
                 }
             } catch (err) {
                 console.error(`Error checking ${ctx}:`, err);
             }
         }
-        // Save back to localStorage after remote check
-        localStorage.setItem(`files_${id}`, JSON.stringify(uploadedFiles));
-
-        // After checking files, if there's a saved context, load it
-        const savedCtx = localStorage.getItem('lastContext');
-        if (savedCtx && id === parseInt(localStorage.getItem('lastDocId'))) {
-            loadPreview(savedCtx);
-            // Open submenu if needed
-            if (['LI', 'Kronologi', 'PUL BAKET'].includes(savedCtx)) {
-                const submenu = document.getElementById('submenu-penahanan');
-                if (submenu) submenu.style.display = 'block';
-            }
-        }
     }
 
-    function updateUIIndicator(ctx, exists) {
-        const boxMap = {
-            'Pemusnahan': 'box-pemusnahan',
-            'Penolakan': 'box-penolakan',
+    function updateUIIndicator(type, exists) {
+        if (!exists) return;
+
+        // Submenu items
+        const idMap = {
             'LI': 'item-LI',
             'Kronologi': 'item-Kronologi',
-            'PUL BAKET': 'item-PUL-BAKET'
+            'PUL BAKET': 'item-PUL_BAKET'
         };
 
-        const elementId = boxMap[ctx];
-        if (!elementId) return;
+        if (idMap[type]) {
+            const el = document.getElementById(idMap[type]);
+            if (el) el.classList.add('has-file');
+        }
 
-        const el = document.getElementById(elementId);
-        if (!el) return;
-
-        if (exists) {
-            el.classList.add('file-available');
-            if (el.classList.contains('action-box')) {
-                el.classList.remove('red-box');
-                el.classList.add('blue-box');
-            } else if (el.classList.contains('submenu-item')) {
-                el.classList.add('has-file');
-            }
-        } else {
-            el.classList.remove('file-available');
-            if (el.classList.contains('action-box')) {
-                if (ctx === 'Pemusnahan') {
-                    el.classList.remove('blue-box');
-                    el.classList.add('red-box');
-                }
-            } else if (el.classList.contains('submenu-item')) {
-                el.classList.remove('has-file');
+        // Action boxes
+        if (type === 'Penolakan') {
+            if (boxPenolakan) boxPenolakan.classList.add('file-available');
+        }
+        if (type === 'Pemusnahan') {
+            if (boxPemusnahan) {
+                boxPemusnahan.classList.remove('red-box');
+                boxPemusnahan.classList.add('blue-box');
+                boxPemusnahan.classList.add('file-available');
             }
         }
 
-        // If this is the active context, refresh preview if it exists
-        if (ctx === currentUploadContext) {
-            if (exists && uploadedFiles[ctx]) {
-                showPdf(uploadedFiles[ctx].name, uploadedFiles[ctx].url);
-            } else {
-                previewContainer.classList.remove('hidden');
-                fileViewer.classList.add('hidden');
-            }
+        // If this is the context currently being viewed, show the file!
+        if (type === currentUploadContext && uploadedFiles[type]) {
+            showPdf(uploadedFiles[type].name, uploadedFiles[type].url);
         }
     }
 
     closeModalBtn.addEventListener('click', () => {
         modal.style.display = 'none';
-        localStorage.removeItem('lastDocId');
-        localStorage.removeItem('lastContext');
+        localStorage.removeItem('activeDocId');
+        localStorage.removeItem('activeContext');
     });
 
     window.onclick = (event) => {
         if (event.target === modal) {
             modal.style.display = 'none';
-            localStorage.removeItem('lastDocId');
-            localStorage.removeItem('lastContext');
+            localStorage.removeItem('activeDocId');
+            localStorage.removeItem('activeContext');
         }
     };
 
     function resetView() {
+        // Reset preview area
         previewContainer.classList.remove('hidden');
         fileViewer.classList.add('hidden');
+
+        // Reset uploaded files state
         uploadedFiles = {};
-        // Reset submenus and boxes
-        document.querySelectorAll('.submenu-item').forEach(el => el.classList.remove('has-file'));
+
+        // Reset UI indicators
+        document.querySelectorAll('.has-file').forEach(el => el.classList.remove('has-file'));
         document.querySelectorAll('.file-available').forEach(el => el.classList.remove('file-available'));
-        if (boxPemusnahan) {
-            boxPemusnahan.classList.remove('blue-box');
-            boxPemusnahan.classList.add('red-box');
-        }
+
+        // Reset Pemusnahan box color
+        boxPemusnahan.classList.remove('blue-box');
+        boxPemusnahan.classList.add('red-box');
     }
 
     // Sidebar Interactions
@@ -211,17 +187,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.loadPreview = (type) => {
         currentUploadContext = type;
-        localStorage.setItem('lastContext', type);
+        localStorage.setItem('activeContext', type);
+
+        // Check if file already exists for this context
         if (uploadedFiles[type]) {
             showPdf(uploadedFiles[type].name, uploadedFiles[type].url);
         } else {
+            // Reset UI for new selection (Empty State)
             previewContainer.classList.remove('hidden');
             fileViewer.classList.add('hidden');
-            const emptyStateP = document.querySelector('.empty-state p');
-            if (emptyStateP) emptyStateP.textContent = `Upload file untuk ${type}`;
+            document.querySelector('.empty-state p').textContent = `Upload file untuk ${type}`;
         }
     };
 
+    // File Upload Simulation
     window.triggerFileUpload = () => {
         document.getElementById('file-input').click();
     };
@@ -229,65 +208,41 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('file-input').addEventListener('change', async (e) => {
         if (e.target.files.length > 0) {
             const file = e.target.files[0];
+            const formData = new FormData();
+            formData.append('file', file);
 
-            // 1. Immediate Local Preview
-            const localURL = URL.createObjectURL(file);
-            showPdf(file.name, localURL);
-
-            // Update UI indicator immediately
-            updateUIIndicator(currentUploadContext, true);
-
-            // 2. Attempt Background Upload
+            // Change UI to "Uploading..."
             const emptyStateText = document.querySelector('.empty-state p');
-            const originalText = emptyStateText ? emptyStateText.textContent : "";
-            if (emptyStateText) emptyStateText.textContent = "Uploading to server...";
+            const originalText = emptyStateText.textContent;
+            emptyStateText.textContent = "Uploading to server...";
 
             try {
-                const uploadUrl = `${WORKER_URL}/upload/${currentDocId}/${currentUploadContext}/${encodeURIComponent(file.name)}`;
+                const uploadUrl = `${WORKER_URL}/upload/${encodeURIComponent(currentDocId)}/${encodeURIComponent(currentUploadContext)}/${encodeURIComponent(file.name)}`;
                 const response = await fetch(uploadUrl, {
                     method: 'PUT',
                     body: file,
-                    headers: { 'Content-Type': file.type }
+                    headers: {
+                        'Content-Type': file.type
+                    }
                 });
 
                 if (response.ok) {
-                    const remoteURL = `${WORKER_URL}/view/${currentDocId}/${currentUploadContext}/${encodeURIComponent(file.name)}`;
+                    const fileURL = `${WORKER_URL}/view/${encodeURIComponent(currentDocId)}/${encodeURIComponent(currentUploadContext)}/${encodeURIComponent(file.name)}`;
                     uploadedFiles[currentUploadContext] = {
                         name: file.name,
-                        url: remoteURL
+                        url: fileURL
                     };
-                    // Persist to localStorage
-                    localStorage.setItem(`files_${currentDocId}`, JSON.stringify(uploadedFiles));
 
-                    // Update iframe to remote URL (cleaner)
-                    pdfFrame.src = remoteURL;
+                    showPdf(file.name, fileURL);
+                    updateUIIndicator(currentUploadContext, true);
                 } else {
-                    console.warn("Upload failed but file is shown locally:", response.statusText);
-                    // Still keep the local preview for the session
-                    uploadedFiles[currentUploadContext] = {
-                        name: file.name,
-                        url: localURL,
-                        isLocal: true
-                    };
-                    localStorage.setItem(`files_${currentDocId}`, JSON.stringify(uploadedFiles));
-                    if (emptyStateText) emptyStateText.textContent = originalText;
+                    alert("Upload failed: " + response.statusText);
+                    emptyStateText.textContent = originalText;
                 }
             } catch (err) {
                 console.error("Upload error:", err);
-                // Notification instead of blocking alert
-                const notify = document.createElement('div');
-                notify.style = "position:fixed; bottom:20px; right:20px; background:#f44336; color:white; padding:10px; border-radius:5px; z-index:2000;";
-                notify.textContent = "Gagal upload ke server, tapi file tampil lokal.";
-                document.body.appendChild(notify);
-                setTimeout(() => notify.remove(), 3000);
-
-                uploadedFiles[currentUploadContext] = {
-                    name: file.name,
-                    url: localURL,
-                    isLocal: true
-                };
-                localStorage.setItem(`files_${currentDocId}`, JSON.stringify(uploadedFiles));
-                if (emptyStateText) emptyStateText.textContent = originalText;
+                alert("Upload error. Check console.");
+                emptyStateText.textContent = originalText;
             }
         }
     });
@@ -299,36 +254,19 @@ document.addEventListener('DOMContentLoaded', () => {
         pdfFrame.src = fileUrl;
     }
 
-    window.resetUpload = async () => {
-        if (!currentUploadContext || !uploadedFiles[currentUploadContext]) return;
+    window.resetUpload = () => {
+        // Remove file from state
+        if (currentUploadContext && uploadedFiles[currentUploadContext]) {
+            delete uploadedFiles[currentUploadContext];
+        }
 
-        const ctx = currentUploadContext;
-        const fileToDelete = uploadedFiles[ctx];
+        previewContainer.classList.remove('hidden');
+        fileViewer.classList.add('hidden');
+        document.getElementById('file-input').value = '';
 
-        const confirmDelete = confirm(`Hapus file ${fileToDelete.name} dari server?`);
-        if (!confirmDelete) return;
-
-        try {
-            const deleteUrl = `${WORKER_URL}/delete/${currentDocId}/${ctx}/${encodeURIComponent(fileToDelete.name)}`;
-            const response = await fetch(deleteUrl, { method: 'DELETE' });
-
-            if (response.ok) {
-                delete uploadedFiles[ctx];
-                localStorage.setItem(`files_${currentDocId}`, JSON.stringify(uploadedFiles));
-                updateUIIndicator(ctx, false);
-
-                // Show empty state
-                previewContainer.classList.remove('hidden');
-                fileViewer.classList.add('hidden');
-                document.getElementById('file-input').value = '';
-                const emptyStateP = document.querySelector('.empty-state p');
-                if (emptyStateP) emptyStateP.textContent = `Upload file untuk ${ctx}`;
-            } else {
-                alert("Gagal menghapus file dari server: " + response.statusText);
-            }
-        } catch (err) {
-            console.error("Delete error:", err);
-            alert("Terjadi kesalahan saat menghapus file.");
+        if (currentUploadContext === 'Pemusnahan') {
+            boxPemusnahan.classList.remove('blue-box');
+            boxPemusnahan.classList.add('red-box');
         }
     };
 
@@ -511,9 +449,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial Render
     filterTable();
 
-    // Restore Session
-    const lastDocId = localStorage.getItem('lastDocId');
-    if (lastDocId) {
-        openDetail(parseInt(lastDocId));
+    // Restore State from localStorage
+    const savedDocId = localStorage.getItem('activeDocId');
+    const savedContext = localStorage.getItem('activeContext');
+
+    if (savedDocId) {
+        openDetail(parseInt(savedDocId));
+        if (savedContext) {
+            // Give a small delay for checkExistingFiles to potentially fetch data
+            setTimeout(() => {
+                loadPreview(savedContext);
+            }, 500);
+        }
     }
 });
