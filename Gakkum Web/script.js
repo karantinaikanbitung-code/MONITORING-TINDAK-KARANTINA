@@ -289,17 +289,37 @@ document.addEventListener('DOMContentLoaded', () => {
         pdfFrame.src = fileUrl;
     }
 
-    window.resetUpload = () => {
-        if (currentUploadContext && uploadedFiles[currentUploadContext]) {
-            const ctx = currentUploadContext;
-            delete uploadedFiles[ctx];
-            localStorage.setItem(`files_${currentDocId}`, JSON.stringify(uploadedFiles));
-            updateUIIndicator(ctx, false);
-        }
+    window.resetUpload = async () => {
+        if (!currentUploadContext || !uploadedFiles[currentUploadContext]) return;
 
-        previewContainer.classList.remove('hidden');
-        fileViewer.classList.add('hidden');
-        document.getElementById('file-input').value = '';
+        const ctx = currentUploadContext;
+        const fileToDelete = uploadedFiles[ctx];
+
+        const confirmDelete = confirm(`Hapus file ${fileToDelete.name} dari server?`);
+        if (!confirmDelete) return;
+
+        try {
+            const deleteUrl = `${WORKER_URL}/delete/${currentDocId}/${ctx}/${encodeURIComponent(fileToDelete.name)}`;
+            const response = await fetch(deleteUrl, { method: 'DELETE' });
+
+            if (response.ok) {
+                delete uploadedFiles[ctx];
+                localStorage.setItem(`files_${currentDocId}`, JSON.stringify(uploadedFiles));
+                updateUIIndicator(ctx, false);
+
+                // Show empty state
+                previewContainer.classList.remove('hidden');
+                fileViewer.classList.add('hidden');
+                document.getElementById('file-input').value = '';
+                const emptyStateP = document.querySelector('.empty-state p');
+                if (emptyStateP) emptyStateP.textContent = `Upload file untuk ${ctx}`;
+            } else {
+                alert("Gagal menghapus file dari server: " + response.statusText);
+            }
+        } catch (err) {
+            console.error("Delete error:", err);
+            alert("Terjadi kesalahan saat menghapus file.");
+        }
     };
 
     const themeToggleBtn = document.getElementById('theme-toggle');
