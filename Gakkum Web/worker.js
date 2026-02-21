@@ -37,6 +37,13 @@ export default {
                     return respond({ error: "Missing parameters" }, 400);
                 }
 
+                // Clear entire prefix before upload to enforce one-file-per-context
+                const prefix = `${docId}/${context}/`;
+                const list = await env.BUCKET.list({ prefix });
+                for (const obj of list.objects) {
+                    await env.BUCKET.delete(obj.key);
+                }
+
                 const key = `${docId}/${context}/${filename}`;
                 await env.BUCKET.put(key, request.body, {
                     httpMetadata: { contentType: request.headers.get("Content-Type") || "application/octet-stream" }
@@ -85,15 +92,19 @@ export default {
                 return respond({ exists: false });
             }
 
-            if (action === "delete" || request.method === "DELETE") {
-                if (!docId || !context || !filename) {
+            if (action === "delete" || (action === "delete" && request.method === "DELETE")) {
+                if (!docId || !context) {
                     return respond({ error: "Missing parameters" }, 400);
                 }
 
-                const key = `${docId}/${context}/${filename}`;
-                await env.BUCKET.delete(key);
+                // Delete entire prefix to ensure even orphaned/old files are removed
+                const prefix = `${docId}/${context}/`;
+                const list = await env.BUCKET.list({ prefix });
+                for (const obj of list.objects) {
+                    await env.BUCKET.delete(obj.key);
+                }
 
-                return respond({ success: true, message: "Deleted" });
+                return respond({ success: true, message: "Prefix deleted" });
             }
 
             return respond({ error: "Not Found" }, 404);
