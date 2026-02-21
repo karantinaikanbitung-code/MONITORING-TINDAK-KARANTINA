@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Laporan Penahanan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        table th, table td {
+            border: 1px solid #000;
+            padding: 5px;
+            text-align: left;
+        }
+        h4 {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+        <center>
+        <h4>LAPORAN PENAHANAN KH</h4>
+        <h4>PERMOHONAN DM</h4>
+        <h4>  7100</h4>
+        <h4>PERIODE 2026-01-01 S/D 2026-01-31</h4>
+        <h4>Waktu Cetak 2026-02-11 09:07:13 &nbsp; Oleh YANCE WILYAM TUWAIDAN - 7100</h4>
+		<br>
+		<br>
+    </center>
+    <table>
+        <thead>
+            <tr>
+                <th>No. Dokumen</th>
+                <th>Tgl Dokumen</th>
+				 <th>No. P5</th>
+                <th>Tgl P5</th>
+                <th>Satpel</th>
+                <th>Pengirim</th>
+                <th>Penerima</th>
+                <th>Asal</th>
+                <th>Tujuan</th>
+                <th>Alasan</th>
+                <th>Rekomendasi</th>
+                <th>Petugas</th>
+				<th>Komoditas</th>
+                <th>Nama Tercetak</th>
+                <th>Kode HS</th>
+                <th>volume P0</th>
+                <th>volume P5</th>
+                <th>satuan</th>
+            </tr>
+
+        </thead>
+       <tbody>
+                    <tr>
+                <td>2026-H4.0-7103.0-K.1.1-000039</td>
+                <td>2026-01-11 14:57:00</td>
+                <td>2026-H4.0-7103.0-K.6.1-000039</td>
+                <td>2026-01-11 15:00:00</td>
+                <td>BKHIT Sulawesi Utara - Pelabuhan Laut Tahuna</td>
+                <td>PINDI KURNIAWAN</td>
+                <td>AGUNG WAHYU PRIBADI</td>
+                <td>INDONESIA - KOTA MANADO</td>
+                <td>INDONESIA - KABUPATEN KEPULAUAN SANGIHE</td>
+                <td>Media pembawa tidak dilaporkan kepada pejabat karantina pada saat pemasukan/pengeluaran<br>Tidak disertai dokumen karantina dan/atau dokumen lain yang dipersyaratkan saat tiba di tempat pemasukan</td>
+                <td>dilakukan penolakan</td>
+                <td>I GUSTI MADE ADNYANA</td>
+                <td>Burung Parkit</td>
+                <td>Burung Parkit</td>
+                <td>01063200</td>
+                <td>10,000</td>
+                <td>10,000</td>
+                <td>ekor</td>
+            </tr>
+                        <tr>
+                <td>2026-H4.0-7101.1-K.1.1-000008</td>
+                <td>2026-01-08 11:44:00</td>
+                <td>2026-H4.0-7101.1-K.6.1-000008</td>
+                <td>2026-01-08 11:48:00</td>
+                <td>BKHIT Sulawesi Utara - Bandara Sam Ratulangi</td>
+                <td>MERLIN MATAHARI</td>
+                <td>MERLIN MATAHARI</td>
+                <td>INDONESIA - KOTA TERNATE</td>
+                <td>INDONESIA - KOTA MANADO</td>
+                <td>Media pembawa tidak dilaporkan kepada pejabat karantina pada saat pemasukan/pengeluaran<br>Tidak disertai dokumen karantina dan/atau dokumen lain yang dipersyaratkan saat tiba di tempat pemasukan</td>
+                <td>dilakukan penolakan</td>
+                <td>NATHALIA WULANDARI</td>
+                <td>Kucing</td>
+                <td>Kucing</td>
+                <td>01012900</td>
+                <td>3,000</td>
+                <td>3,000</td>
+                <td>ekor</td>
+            </tr>
+                        <tr>
+                <td>2026-H4.0-7101.1-K.1.1-000005</td>
+                <td>2026-01-06 15:56:00</td>
+                <td>2026-H4.0-7101.1-K.6.1-000005</td>
+                <td>2026-01-06 15:58:00</td>
+                <td>BKHIT Sulawesi Utara - Bandara Sam Ratulangi</td>
+                <td>Aldaier Makatindu</td>
+                <td>Jouce Kansil</td>
+                <td>INDONESIA - KABUPATEN KEPULAUAN SANGIHE</td>
+                <td>INDONESIA - KOTA MANADO</td>
+                <td>Media pembawa tidak dilaporkan kepada pejabat karantina pada saat pemasukan/pengeluaran<br>Tidak disertai dokumen karantina dan/atau dokumen lain yang dipersyaratkan saat tiba di tempat pemasukan</td>
+                <td>dilakukan penolakan</td>
+                <td>NATHALIA WULANDARI</td>
+                <td>Ayam</td>
+                <td>Ayam</td>
+                <td>01012900</td>
+                <td>3,000</td>
+                <td>3,000</td>
+                <td>ekor</td>
+            </tr>
+                </tbody>
+    </table>
+</body>
+</html>

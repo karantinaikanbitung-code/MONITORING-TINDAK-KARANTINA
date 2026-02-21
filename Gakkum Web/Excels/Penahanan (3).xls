@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Laporan Penahanan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        table th, table td {
+            border: 1px solid #000;
+            padding: 5px;
+            text-align: left;
+        }
+        h4 {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+        <center>
+        <h4>LAPORAN PENAHANAN KI</h4>
+        <h4>PERMOHONAN IM</h4>
+        <h4>  7100</h4>
+        <h4>PERIODE 2026-01-01 S/D 2026-01-31</h4>
+        <h4>Waktu Cetak 2026-02-11 09:05:16 &nbsp; Oleh YANCE WILYAM TUWAIDAN - 7100</h4>
+		<br>
+		<br>
+    </center>
+    <table>
+        <thead>
+            <tr>
+                <th>No. Dokumen</th>
+                <th>Tgl Dokumen</th>
+				 <th>No. P5</th>
+                <th>Tgl P5</th>
+                <th>Satpel</th>
+                <th>Pengirim</th>
+                <th>Penerima</th>
+                <th>Asal</th>
+                <th>Tujuan</th>
+                <th>Alasan</th>
+                <th>Rekomendasi</th>
+                <th>Petugas</th>
+				<th>Komoditas</th>
+                <th>Nama Tercetak</th>
+                <th>Kode HS</th>
+                <th>volume P0</th>
+                <th>volume P5</th>
+                <th>satuan</th>
+            </tr>
+
+        </thead>
+       <tbody>
+                    <tr>
+                <td>2026-I2.0-7101.0-K.1.1-000004</td>
+                <td>2026-01-30 07:18:00</td>
+                <td>2026-I2.0-7101.0-K.6.1-000004</td>
+                <td>2026-01-30 07:21:00</td>
+                <td>BKHIT Sulawesi Utara - Bandara Sam Ratulangi</td>
+                <td>No Name</td>
+                <td>No Name</td>
+                <td>CHINA - </td>
+                <td>INDONESIA - KOTA MANADO</td>
+                <td>Tidak disertai dokumen karantina dan/atau dokumen lain yang dipersyaratkan saat tiba di tempat pemasukan</td>
+                <td>dilakukan penolakan</td>
+                <td>ANGGA AFRIANTO</td>
+                <td>Ikan Teri</td>
+                <td>Ikan Teri Olahan</td>
+                <td>16055490</td>
+                <td>0,500</td>
+                <td>0,500</td>
+                <td>kilogram</td>
+            </tr>
+                        <tr>
+                <td>2026-I2.0-7101.0-K.1.1-000002</td>
+                <td>2026-01-20 08:27:00</td>
+                <td>2026-I2.0-7101.0-K.6.1-000002</td>
+                <td>2026-01-20 08:31:00</td>
+                <td>BKHIT Sulawesi Utara - Bandara Sam Ratulangi</td>
+                <td>No Name</td>
+                <td>No Name</td>
+                <td>CHINA - </td>
+                <td>INDONESIA - KOTA MANADO</td>
+                <td>Media pembawa tidak dilaporkan kepada pejabat karantina pada saat pemasukan/pengeluaran<br>Tidak disertai dokumen karantina dan/atau dokumen lain yang dipersyaratkan saat tiba di tempat pemasukan</td>
+                <td>dilakukan penolakan</td>
+                <td>FERNANDO ERWIN WENUR</td>
+                <td>Ikan Patin</td>
+                <td>Ikan Patin Asin</td>
+                <td>16055490</td>
+                <td>5,500</td>
+                <td>5,500</td>
+                <td>kilogram</td>
+            </tr>
+                        <tr>
+                <td>2026-I2.0-7101.0-K.1.1-000001</td>
+                <td>2026-01-09 08:39:00</td>
+                <td>2026-I2.0-7101.0-K.6.1-000001</td>
+                <td>2026-01-09 08:44:00</td>
+                <td>BKHIT Sulawesi Utara - Bandara Sam Ratulangi</td>
+                <td>No Name</td>
+                <td>No Name</td>
+                <td>CHINA - </td>
+                <td>INDONESIA - KOTA MANADO</td>
+                <td>Tidak disertai dokumen karantina dan/atau dokumen lain yang dipersyaratkan saat tiba di tempat pemasukan</td>
+                <td>dilakukan penolakan</td>
+                <td>HENDRO SAPUTRA</td>
+                <td>Sidat</td>
+                <td>Sidat Kering</td>
+                <td>03052010</td>
+                <td>0,300</td>
+                <td>0,300</td>
+                <td>kilogram</td>
+            </tr>
+                        <tr>
+                <td>2026-I2.0-7101.0-K.1.1-000003</td>
+                <td>2026-01-28 15:15:00</td>
+                <td>2026-I2.0-7101.0-K.6.1-000003</td>
+                <td>2026-01-28 15:19:00</td>
+                <td>BKHIT Sulawesi Utara - Bandara Sam Ratulangi</td>
+                <td>No Name</td>
+                <td>No Name</td>
+                <td>CHINA - </td>
+                <td>INDONESIA - KOTA MANADO</td>
+                <td>Media pembawa tidak dilaporkan kepada pejabat karantina pada saat pemasukan/pengeluaran<br>Tidak disertai dokumen karantina dan/atau dokumen lain yang dipersyaratkan saat tiba di tempat pemasukan</td>
+                <td>dilakukan penolakan</td>
+                <td>FABIO GERARD REMBET</td>
+                <td>Ikan Teri</td>
+                <td>Ikan Teri Olahan</td>
+                <td>16055490</td>
+                <td>9,200</td>
+                <td>9,200</td>
+                <td>kilogram</td>
+            </tr>
+                </tbody>
+    </table>
+</body>
+</html>

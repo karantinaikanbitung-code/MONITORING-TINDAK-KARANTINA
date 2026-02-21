@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Laporan Penahanan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        table th, table td {
+            border: 1px solid #000;
+            padding: 5px;
+            text-align: left;
+        }
+        h4 {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+        <center>
+        <h4>LAPORAN PENAHANAN KT</h4>
+        <h4>PERMOHONAN IM</h4>
+        <h4>  7100</h4>
+        <h4>PERIODE 2026-01-01 S/D 2026-01-31</h4>
+        <h4>Waktu Cetak 2026-02-11 09:05:28 &nbsp; Oleh YANCE WILYAM TUWAIDAN - 7100</h4>
+		<br>
+		<br>
+    </center>
+    <table>
+        <thead>
+            <tr>
+                <th>No. Dokumen</th>
+                <th>Tgl Dokumen</th>
+				 <th>No. P5</th>
+                <th>Tgl P5</th>
+                <th>Satpel</th>
+                <th>Pengirim</th>
+                <th>Penerima</th>
+                <th>Asal</th>
+                <th>Tujuan</th>
+                <th>Alasan</th>
+                <th>Rekomendasi</th>
+                <th>Petugas</th>
+				<th>Komoditas</th>
+                <th>Nama Tercetak</th>
+                <th>Kode HS</th>
+                <th>volume P0</th>
+                <th>volume P5</th>
+                <th>satuan</th>
+            </tr>
+
+        </thead>
+       <tbody>
+                    <tr>
+                <td>2026-T2.0-7101.0-K.1.1-000004</td>
+                <td>2026-01-20 07:29:00</td>
+                <td>2026-T2.0-7101.0-K.6.1-000004</td>
+                <td>2026-01-20 07:59:00</td>
+                <td>BKHIT Sulawesi Utara - Bandara Sam Ratulangi</td>
+                <td>NN</td>
+                <td>NN</td>
+                <td>CHINA - </td>
+                <td>INDONESIA - KOTA MANADO</td>
+                <td>Tidak disertai dokumen karantina dan/atau dokumen lain yang dipersyaratkan saat tiba di tempat pemasukan</td>
+                <td>dilakukan penolakan</td>
+                <td>YULIUS TANGKE ALLA</td>
+                <td>CABE KERING</td>
+                <td>CABE KERING</td>
+                <td>01064900</td>
+                <td>1,000</td>
+                <td>0,250</td>
+                <td>kemasan</td>
+            </tr>
+                        <tr>
+                <td>2026-T2.0-7101.0-K.1.1-000002</td>
+                <td>2026-01-15 10:38:00</td>
+                <td>2026-T2.0-7101.0-K.6.1-000002</td>
+                <td>2026-01-15 12:33:00</td>
+                <td>BKHIT Sulawesi Utara - Bandara Sam Ratulangi</td>
+                <td>NN</td>
+                <td>NN</td>
+                <td>CHINA - </td>
+                <td>INDONESIA - KOTA MANADO</td>
+                <td>Media pembawa tidak dilaporkan kepada pejabat karantina pada saat pemasukan/pengeluaran<br>Tidak disertai Keterangan Mutasi/keterangan tidak terkontaminasi/catatan suhu untuk media pembawa yang dipersyaratkan<br>Tidak disertai dokumen karantina dan/atau dokumen lain yang dipersyaratkan saat tiba di tempat pemasukan</td>
+                <td>dilakukan penolakan</td>
+                <td>YULIUS TANGKE ALLA</td>
+                <td>JAMUR KERING</td>
+                <td>JAMUR KERING</td>
+                <td>07123200</td>
+                <td>2,000</td>
+                <td>2,000</td>
+                <td>kemasan</td>
+            </tr>
+                        <tr>
+                <td>2026-T2.0-7101.0-K.1.1-000001</td>
+                <td>2026-01-06 11:51:00</td>
+                <td>2026-T2.0-7101.0-K.6.1-000001</td>
+                <td>2026-01-06 11:56:00</td>
+                <td>BKHIT Sulawesi Utara - Bandara Sam Ratulangi</td>
+                <td>NN</td>
+                <td>NN</td>
+                <td>CHINA - </td>
+                <td>INDONESIA - KOTA MANADO</td>
+                <td>Tidak disertai dokumen karantina dan/atau dokumen lain yang dipersyaratkan saat tiba di tempat pemasukan</td>
+                <td>dilakukan penolakan</td>
+                <td>YULIUS TANGKE ALLA</td>
+                <td>BUAH-BUAHAN</td>
+                <td>BUAH HAWTHORN</td>
+                <td>08134090</td>
+                <td>1,000</td>
+                <td>1,000</td>
+                <td>kemasan</td>
+            </tr>
+                        <tr>
+                <td>2026-T2.0-7101.0-K.1.1-000007</td>
+                <td>2026-01-31 06:50:00</td>
+                <td>2026-T2.0-7101.0-K.6.1-000007</td>
+                <td>2026-01-31 06:57:00</td>
+                <td>BKHIT Sulawesi Utara - Bandara Sam Ratulangi</td>
+                <td>NN</td>
+                <td>NN</td>
+                <td>CHINA - </td>
+                <td>INDONESIA - KOTA MANADO</td>
+                <td>Tidak disertai dokumen karantina dan/atau dokumen lain yang dipersyaratkan saat tiba di tempat pemasukan</td>
+                <td>dilakukan penolakan</td>
+                <td>DEWI HUMALIDI</td>
+                <td>BAWANG DAUN</td>
+                <td>BAWANG DAUN</td>
+                <td>09022010</td>
+                <td>0,600</td>
+                <td>0,600</td>
+                <td>kilogram</td>
+            </tr>
+                        <tr>
+                <td>2026-T2.0-7101.0-K.1.1-000006</td>
+                <td>2026-01-22 09:13:00</td>
+                <td>2026-T2.0-7101.0-K.6.1-000006</td>
+                <td>2026-01-22 09:21:00</td>
+                <td>BKHIT Sulawesi Utara - Bandara Sam Ratulangi</td>
+                <td>NN</td>
+                <td>NN</td>
+                <td>CHINA - </td>
+                <td>INDONESIA - KOTA MANADO</td>
+                <td>Tidak disertai dokumen karantina dan/atau dokumen lain yang dipersyaratkan saat tiba di tempat pemasukan</td>
+                <td>dilakukan penolakan</td>
+                <td>STENLY HERDI PAULUS GOSAL</td>
+                <td>BUAH-BUAHAN</td>
+                <td>BUAH-BUAHAN</td>
+                <td>08134090</td>
+                <td>1,000</td>
+                <td>1,000</td>
+                <td>kemasan</td>
+            </tr>
+                        <tr>
+                <td>2026-T2.0-7101.0-K.1.1-000005</td>
+                <td>2026-01-21 07:52:00</td>
+                <td>2026-T2.0-7101.0-K.6.1-000005</td>
+                <td>2026-01-21 08:04:00</td>
+                <td>BKHIT Sulawesi Utara - Bandara Sam Ratulangi</td>
+                <td>NN</td>
+                <td>NN</td>
+                <td>CHINA - </td>
+                <td>INDONESIA - KOTA MANADO</td>
+                <td>Tidak disertai dokumen karantina dan/atau dokumen lain yang dipersyaratkan saat tiba di tempat pemasukan</td>
+                <td>dilakukan penolakan</td>
+                <td>YULIUS TANGKE ALLA</td>
+                <td>BIDARA/JUJUBE</td>
+                <td>BIDARA/JUJUBE</td>
+                <td>0000</td>
+                <td>2,000</td>
+                <td>2,000</td>
+                <td>kemasan</td>
+            </tr>
+                        <tr>
+                <td>2026-T2.0-7101.1-K.1.1-000001</td>
+                <td>2026-01-05 09:26:00</td>
+                <td>2026-T2.0-7101.1-K.6.1-000001</td>
+                <td>2026-01-05 09:32:00</td>
+                <td>BKHIT Sulawesi Utara - Bandara Sam Ratulangi</td>
+                <td>NN</td>
+                <td>NN</td>
+                <td>CHINA - </td>
+                <td>INDONESIA - KOTA MANADO</td>
+                <td>Tidak disertai dokumen karantina dan/atau dokumen lain yang dipersyaratkan saat tiba di tempat pemasukan</td>
+                <td>dilakukan penolakan</td>
+                <td>DEWI HUMALIDI</td>
+                <td>BIJI CHIA</td>
+                <td>BIJI CHIA</td>
+                <td>12093000</td>
+                <td>1,000</td>
+                <td>1,000</td>
+                <td>kemasan</td>
+            </tr>
+                </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Monitoring Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="light-mode">
+    <div class="app-container">
+        <!-- Header -->
+        <header class="main-header">
+            <div class="header-left">
+                <div class="header-logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/id/5/53/Logo_Barantin.svg" alt="Logo Barantin"
+                        class="header-logo">
+                    <div class="header-text">
+                        <h1 class="header-title">GAKUM BKHIT SULUT</h1>
+                        <p class="header-subtitle">MONITORING TINDAK KARANTINA</p>
+                    </div>
+                </div>
+            </div>
+            <div class="header-right">
+                <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <div class="profile-menu">
+                    <button class="profile-btn" id="profile-btn">
+                        <i class="fa-solid fa-user-circle"></i>
+                    </button>
+                    <div class="profile-dropdown" id="profile-dropdown">
+                        <a href="#" id="logout-btn"><i class="fa-solid fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="content-area">
+            <!-- Filter Section -->
+            <section class="filter-section">
+                <div class="filter-group">
+                    <label>Karantina</label>
+                    <select id="filter-karantina">
+                        <option value="">Semua</option>
+                        <option value="Hewan">Hewan</option>
+                        <option value="Ikan">Ikan</option>
+                        <option value="Tumbuhan">Tumbuhan</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Permohonan</label>
+                    <select id="filter-permohonan">
+                        <option value="">Semua</option>
+                        <option value="Ekspor">Ekspor</option>
+                        <option value="Impor">Impor</option>
+                        <option value="Domestik Keluar">Domestik Keluar</option>
+                        <option value="Domestik Masuk">Domestik Masuk</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Tanggal Awal</label>
+                    <input type="date" id="filter-tgl-awal">
+                </div>
+                <div class="filter-group">
+                    <label>Tanggal Akhir</label>
+                    <input type="date" id="filter-tgl-akhir">
+                </div>
+                <div class="filter-actions">
+                    <button class="btn btn-primary" onclick="filterTable()"><i class="fa-solid fa-filter"></i>
+                        Filter</button>
+                    <button class="btn btn-success" onclick="exportXLS()"><i class="fa-solid fa-file-excel"></i> Export
+                        XLS</button>
+                </div>
+            </section>
+
+            <!-- Data Table -->
+            <section class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>No. Dokumen</th>
+                            <th>Tgl. Dokumen</th>
+                            <th>Karantina</th>
+                            <th>Permohonan</th>
+                            <th>Pengirim</th>
+                            <th>Penerima</th>
+                            <th>Asal</th>
+                            <th>Tujuan</th>
+                            <th>Komoditas</th>
+                            <th>TKP</th>
+                            <th>Ket</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <!-- Rows will be populated by JS -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <!-- Detail Modal -->
+    <div id="detail-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Detail Dokumen</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Left Sidebar -->
+                <div class="detail-sidebar">
+                    <!-- Box 1: PENAHANAN -->
+                    <div class="action-box blue-box" id="box-penahanan">
+                        <div class="box-header" onclick="toggleSubmenu('submenu-penahanan')">
+                            <span>PENAHANAN</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="box-submenu" id="submenu-penahanan">
+                            <div class="submenu-item" id="item-LI" onclick="loadPreview('LI')">LI</div>
+                            <div class="submenu-item" id="item-Kronologi" onclick="loadPreview('Kronologi')">Kronologi
+                                dan Dokumentasi</div>
+                            <div class="submenu-item" id="item-PUL-BAKET" onclick="loadPreview('PUL BAKET')">PUL BAKET
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Box 2: PENOLAKAN -->
+                    <div class="action-box blue-box" id="box-penolakan" onclick="loadPreview('Penolakan')">
+                        <span>PENOLAKAN</span>
+                    </div>
+
+                    <!-- Box 3: PEMUSNAHAN -->
+                    <!-- Initially Red (empty), turns Blue when uploaded -->
+                    <div class="action-box red-box" id="box-pemusnahan" onclick="loadPreview('Pemusnahan')">
+                        <span>PEMUSNAHAN</span>
+                    </div>
+                </div>
+
+                <!-- Right Preview Panel -->
+                <div class="detail-preview">
+                    <div id="preview-container" class="preview-content">
+                        <div class="empty-state">
+                            <i class="fa-solid fa-cloud-arrow-up upload-icon" id="upload-trigger"></i>
+                            <p>Belum ada file diupload</p>
+                            <button class="btn btn-primary" onclick="triggerFileUpload()">Upload File</button>
+                            <input type="file" id="file-input" hidden>
+                        </div>
+                    </div>
+                    <div id="file-viewer" class="file-viewer hidden">
+                        <div class="viewer-header">
+                            <span id="viewer-filename">doc.pdf</span>
+                            <button class="btn-icon" onclick="resetUpload()"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                        <iframe src="" id="pdf-frame" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
