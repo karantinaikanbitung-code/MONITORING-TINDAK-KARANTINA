@@ -1,34 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("Web Monitoring Dashboard - v1.2 (Dynamic Title + Vol XLS)");
     // Real Data from Excel files
     const tableData = [
         // Penahanan (2).xls
-        { id: 1, noDok: '2026-H2.0-7101.0-K.1.1-000007', tgl: '2026-01-22', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Daging Olahan Babi', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor' },
-        { id: 2, noDok: '2026-H2.0-7101.0-K.1.1-000003', tgl: '2026-01-07', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Daging Ayam', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor' },
-        { id: 3, noDok: '2026-H2.0-7101.0-K.1.1-000002', tgl: '2026-01-05', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Daging Olahan Babi', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor' },
-        { id: 4, noDok: '2026-H2.0-7101.0-K.1.1-000001', tgl: '2026-01-01', pengirim: 'NN', penerima: 'NN', asal: 'PHILIPINA', tujuan: 'INDONESIA - KOTA BITUNG', komoditas: 'Unggas Besar Kesayangan', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor' },
-        { id: 5, noDok: '2026-H2.0-7101.0-K.1.1-000005', tgl: '2026-01-14', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Daging Olahan Sapi', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor' },
-        { id: 6, noDok: '2026-H2.0-7101.0-K.1.1-000006', tgl: '2026-01-15', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Daging Olahan Babi', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor' },
-        { id: 7, noDok: '2026-H2.0-7101.0-K.1.1-000004', tgl: '2026-01-13', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Daging Babi', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor' },
+        { id: 1, noDok: '2026-H2.0-7101.0-K.1.1-000007', tgl: '2026-01-22', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Daging Olahan Babi', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor', volP0: '16,000', volP5: '16,000', satuan: 'kemasan' },
+        { id: 2, noDok: '2026-H2.0-7101.0-K.1.1-000003', tgl: '2026-01-07', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Daging Ayam', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor', volP0: '24,000', volP5: '24,000', satuan: 'kemasan' },
+        { id: 3, noDok: '2026-H2.0-7101.0-K.1.1-000002', tgl: '2026-01-05', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Daging Olahan Babi', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor', volP0: '16,000', volP5: '16,000', satuan: 'kemasan' },
+        { id: 4, noDok: '2026-H2.0-7101.0-K.1.1-000001', tgl: '2026-01-01', pengirim: 'NN', penerima: 'NN', asal: 'PHILIPINA', tujuan: 'INDONESIA - KOTA BITUNG', komoditas: 'Unggas Besar Kesayangan', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor', volP0: '218,000', volP5: '218,000', satuan: 'ekor' },
+        { id: 5, noDok: '2026-H2.0-7101.0-K.1.1-000005', tgl: '2026-01-14', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Daging Olahan Sapi', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor', volP0: '6,000', volP5: '6,000', satuan: 'kemasan' },
+        { id: 6, noDok: '2026-H2.0-7101.0-K.1.1-000006', tgl: '2026-01-15', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Daging Olahan Babi', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor', volP0: '8,000', volP5: '8,000', satuan: 'kemasan' },
+        { id: 7, noDok: '2026-H2.0-7101.0-K.1.1-000004', tgl: '2026-01-13', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Daging Babi', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor', volP0: '90,000', volP5: '90,000', satuan: 'kemasan' },
 
         // Penahanan (3).xls
-        { id: 8, noDok: '2026-I2.0-7101.0-K.1.1-000004', tgl: '2026-01-30', pengirim: 'No Name', penerima: 'No Name', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Ikan Teri', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Ikan', permohonan: 'Impor' },
-        { id: 9, noDok: '2026-I2.0-7101.0-K.1.1-000002', tgl: '2026-01-20', pengirim: 'No Name', penerima: 'No Name', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Ikan Patin', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Ikan', permohonan: 'Impor' },
-        { id: 10, noDok: '2026-I2.0-7101.0-K.1.1-000001', tgl: '2026-01-09', pengirim: 'No Name', penerima: 'No Name', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Sidat', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Ikan', permohonan: 'Impor' },
-        { id: 11, noDok: '2026-I2.0-7101.0-K.1.1-000003', tgl: '2026-01-28', pengirim: 'No Name', penerima: 'No Name', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Ikan Teri', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Ikan', permohonan: 'Impor' },
+        { id: 8, noDok: '2026-I2.0-7101.0-K.1.1-000004', tgl: '2026-01-30', pengirim: 'No Name', penerima: 'No Name', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Ikan Teri', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Ikan', permohonan: 'Impor', volP0: '0,500', volP5: '0,500', satuan: 'kilogram' },
+        { id: 9, noDok: '2026-I2.0-7101.0-K.1.1-000002', tgl: '2026-01-20', pengirim: 'No Name', penerima: 'No Name', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Ikan Patin', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Ikan', permohonan: 'Impor', volP0: '5,500', volP5: '5,500', satuan: 'kilogram' },
+        { id: 10, noDok: '2026-I2.0-7101.0-K.1.1-000001', tgl: '2026-01-09', pengirim: 'No Name', penerima: 'No Name', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Sidat', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Ikan', permohonan: 'Impor', volP0: '0,300', volP5: '0,300', satuan: 'kilogram' },
+        { id: 11, noDok: '2026-I2.0-7101.0-K.1.1-000003', tgl: '2026-01-28', pengirim: 'No Name', penerima: 'No Name', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Ikan Teri', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Ikan', permohonan: 'Impor', volP0: '9,200', volP5: '9,200', satuan: 'kilogram' },
 
         // Penahanan (4).xls
-        { id: 12, noDok: '2026-T2.0-7101.0-K.1.1-000004', tgl: '2026-01-20', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'CABE KERING', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor' },
-        { id: 13, noDok: '2026-T2.0-7101.0-K.1.1-000002', tgl: '2026-01-15', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'JAMUR KERING', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor' },
-        { id: 14, noDok: '2026-T2.0-7101.0-K.1.1-000001', tgl: '2026-01-06', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'BUAH-BUAHAN', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor' },
-        { id: 15, noDok: '2026-T2.0-7101.0-K.1.1-000007', tgl: '2026-01-31', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'BAWANG DAUN', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor' },
-        { id: 16, noDok: '2026-T2.0-7101.0-K.1.1-000006', tgl: '2026-01-22', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'BUAH-BUAHAN', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor' },
-        { id: 17, noDok: '2026-T2.0-7101.0-K.1.1-000005', tgl: '2026-01-21', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'BIDARA/JUJUBE', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor' },
-        { id: 18, noDok: '2026-T2.0-7101.1-K.1.1-000001', tgl: '2026-01-05', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'BIJI CHIA', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor' },
+        { id: 12, noDok: '2026-T2.0-7101.0-K.1.1-000004', tgl: '2026-01-20', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'CABE KERING', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor', volP0: '1,000', volP5: '0,250', satuan: 'kemasan' },
+        { id: 13, noDok: '2026-T2.0-7101.0-K.1.1-000002', tgl: '2026-01-15', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'JAMUR KERING', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor', volP0: '2,000', volP5: '2,000', satuan: 'kemasan' },
+        { id: 14, noDok: '2026-T2.0-7101.0-K.1.1-000001', tgl: '2026-01-06', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'BUAH-BUAHAN', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor', volP0: '1,000', volP5: '1,000', satuan: 'kemasan' },
+        { id: 15, noDok: '2026-T2.0-7101.0-K.1.1-000007', tgl: '2026-01-31', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'BAWANG DAUN', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor', volP0: '0,600', volP5: '0,600', satuan: 'kilogram' },
+        { id: 16, noDok: '2026-T2.0-7101.0-K.1.1-000006', tgl: '2026-01-22', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'BUAH-BUAHAN', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor', volP0: '1,000', volP5: '1,000', satuan: 'kemasan' },
+        { id: 17, noDok: '2026-T2.0-7101.0-K.1.1-000005', tgl: '2026-01-21', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'BIDARA/JUJUBE', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor', volP0: '2,000', volP5: '2,000', satuan: 'kemasan' },
+        { id: 18, noDok: '2026-T2.0-7101.1-K.1.1-000001', tgl: '2026-01-05', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'BIJI CHIA', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor', volP0: '1,000', volP5: '1,000', satuan: 'kemasan' },
 
         // Penahanan (5).xls
-        { id: 19, noDok: '2026-H4.0-7103.0-K.1.1-000039', tgl: '2026-01-11', pengirim: 'PINDI KURNIAWAN', penerima: 'AGUNG WAHYU PRIBADI', asal: 'KOTA MANADO', tujuan: 'KEPULAUAN SANGIHE', komoditas: 'Burung Parkit', tkp: 'BKHIT Sulawesi Utara - Pelabuhan Laut Tahuna', ket: 'Lengkap', category: 'Hewan', permohonan: 'Domestik Masuk' },
-        { id: 20, noDok: '2026-H4.0-7101.1-K.1.1-000008', tgl: '2026-01-08', pengirim: 'MERLIN MATAHARI', penerima: 'MERLIN MATAHARI', asal: 'KOTA TERNATE', tujuan: 'KOTA MANADO', komoditas: 'Kucing', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Domestik Masuk' },
-        { id: 21, noDok: '2026-H4.0-7101.1-K.1.1-000005', tgl: '2026-01-06', pengirim: 'Aldaier Makatindu', penerima: 'Jouce Kansil', asal: 'KEPULAUAN SANGIHE', tujuan: 'KOTA MANADO', komoditas: 'Ayam', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Domestik Masuk' },
+        { id: 19, noDok: '2026-H4.0-7103.0-K.1.1-000039', tgl: '2026-01-11', pengirim: 'PINDI KURNIAWAN', penerima: 'AGUNG WAHYU PRIBADI', asal: 'KOTA MANADO', tujuan: 'KEPULAUAN SANGIHE', komoditas: 'Burung Parkit', tkp: 'BKHIT Sulawesi Utara - Pelabuhan Laut Tahuna', ket: 'Lengkap', category: 'Hewan', permohonan: 'Domestik Masuk', volP0: '10,000', volP5: '10,000', satuan: 'ekor' },
+        { id: 20, noDok: '2026-H4.0-7101.1-K.1.1-000008', tgl: '2026-01-08', pengirim: 'MERLIN MATAHARI', penerima: 'MERLIN MATAHARI', asal: 'KOTA TERNATE', tujuan: 'KOTA MANADO', komoditas: 'Kucing', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Domestik Masuk', volP0: '3,000', volP5: '3,000', satuan: 'ekor' },
+        { id: 21, noDok: '2026-H4.0-7101.1-K.1.1-000005', tgl: '2026-01-06', pengirim: 'Aldaier Makatindu', penerima: 'Jouce Kansil', asal: 'KEPULAUAN SANGIHE', tujuan: 'KOTA MANADO', komoditas: 'Ayam', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Domestik Masuk', volP0: '3,000', volP5: '3,000', satuan: 'ekor' },
     ];
 
     const tableBody = document.getElementById('table-body');
@@ -40,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const viewerFilename = document.getElementById('viewer-filename');
     const WORKER_URL = 'https://gakkum-monitoring-api.karantinaikanbitung.workers.dev';
     const boxPemusnahan = document.getElementById('box-pemusnahan');
-    const boxPenolakan = document.getElementById('box-penolakan');
     let currentUploadContext = null;
     let currentDocId = null;
     let uploadedFiles = {};
@@ -76,14 +76,24 @@ document.addEventListener('DOMContentLoaded', () => {
     window.openDetail = (id) => {
         currentDocId = id;
         localStorage.setItem('lastDocId', id);
+
+        // Update Modal Title with Doc Suffix
+        const modalTitle = document.getElementById('modal-title');
+        const doc = tableData.find(d => d.id === id);
+        if (modalTitle && doc) {
+            // Get suffix: everything after the last 3 hyphens (e.g. K.1.1-000007)
+            // Format: YYYY-CATEGORY-CODE-SUFFIX-NUMBER -> we want SUFFIX-NUMBER
+            const parts = doc.noDok.split('-');
+            const suffix = parts.length > 2 ? parts.slice(-2).join('-') : doc.noDok;
+            modalTitle.textContent = `Detail Dokumen ${suffix}`;
+        }
+
         modal.style.display = 'flex';
         resetView();
         checkExistingFiles(id);
     };
 
     async function checkExistingFiles(id) {
-        const docIdAtStart = id;
-
         // First, try to load from localStorage for immediate UI feedback
         const savedData = localStorage.getItem(`files_${id}`);
         if (savedData) {
@@ -96,14 +106,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const contexts = ['LI', 'Kronologi', 'PUL BAKET', 'Penolakan', 'Pemusnahan'];
         for (const ctx of contexts) {
             try {
-                if (currentDocId !== docIdAtStart) return;
-
                 const response = await fetch(`${WORKER_URL}/check/${id}/${ctx}`);
-                if (!response.ok) continue;
+                if (!response.ok) {
+                    // If not found on server, but we have a local flag or it was deleted, sync
+                    continue;
+                }
 
                 const data = await response.json();
-                if (currentDocId !== docIdAtStart) return;
-
                 if (data.exists) {
                     uploadedFiles[ctx] = {
                         name: data.filename,
@@ -111,6 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     };
                     updateUIIndicator(ctx, true);
                 } else if (uploadedFiles[ctx] && !uploadedFiles[ctx].isLocal) {
+                    // Sync: if server says it doesn't exist and we thought it was a remote file, remove it
                     delete uploadedFiles[ctx];
                     updateUIIndicator(ctx, false);
                 }
@@ -118,17 +128,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error(`Error checking ${ctx}:`, err);
             }
         }
+        // Save back to localStorage after remote check
+        localStorage.setItem(`files_${id}`, JSON.stringify(uploadedFiles));
 
-        if (currentDocId === docIdAtStart) {
-            localStorage.setItem(`files_${id}`, JSON.stringify(uploadedFiles));
-
-            const savedCtx = localStorage.getItem('lastContext');
-            if (savedCtx && id === parseInt(localStorage.getItem('lastDocId'))) {
-                loadPreview(savedCtx);
-                if (['LI', 'Kronologi', 'PUL BAKET'].includes(savedCtx)) {
-                    const submenu = document.getElementById('submenu-penahanan');
-                    if (submenu) submenu.style.display = 'block';
-                }
+        // After checking files, if there's a saved context, load it
+        const savedCtx = localStorage.getItem('lastContext');
+        if (savedCtx && id === parseInt(localStorage.getItem('lastDocId'))) {
+            loadPreview(savedCtx);
+            // Open submenu if needed
+            if (['LI', 'Kronologi', 'PUL BAKET'].includes(savedCtx)) {
+                const submenu = document.getElementById('submenu-penahanan');
+                if (submenu) submenu.style.display = 'block';
             }
         }
     }
@@ -168,6 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        // If this is the active context, refresh preview if it exists
         if (ctx === currentUploadContext) {
             if (exists && uploadedFiles[ctx]) {
                 showPdf(uploadedFiles[ctx].name, uploadedFiles[ctx].url);
@@ -182,6 +193,9 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.style.display = 'none';
         localStorage.removeItem('lastDocId');
         localStorage.removeItem('lastContext');
+        // Reset Title
+        const modalTitle = document.getElementById('modal-title');
+        if (modalTitle) modalTitle.textContent = 'Detail Dokumen';
     });
 
     window.onclick = (event) => {
@@ -189,6 +203,9 @@ document.addEventListener('DOMContentLoaded', () => {
             modal.style.display = 'none';
             localStorage.removeItem('lastDocId');
             localStorage.removeItem('lastContext');
+            // Reset Title
+            const modalTitle = document.getElementById('modal-title');
+            if (modalTitle) modalTitle.textContent = 'Detail Dokumen';
         }
     };
 
@@ -196,6 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
         previewContainer.classList.remove('hidden');
         fileViewer.classList.add('hidden');
         uploadedFiles = {};
+        // Reset submenus and boxes
         document.querySelectorAll('.submenu-item').forEach(el => el.classList.remove('has-file'));
         document.querySelectorAll('.file-available').forEach(el => el.classList.remove('file-available'));
         if (boxPemusnahan) {
@@ -204,6 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Sidebar Interactions
     window.toggleSubmenu = (id) => {
         const submenu = document.getElementById(id);
         submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
@@ -229,10 +248,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('file-input').addEventListener('change', async (e) => {
         if (e.target.files.length > 0) {
             const file = e.target.files[0];
+
+            // 1. Immediate Local Preview
             const localURL = URL.createObjectURL(file);
             showPdf(file.name, localURL);
+
+            // Update UI indicator immediately
             updateUIIndicator(currentUploadContext, true);
 
+            // 2. Attempt Background Upload
             const emptyStateText = document.querySelector('.empty-state p');
             const originalText = emptyStateText ? emptyStateText.textContent : "";
             if (emptyStateText) emptyStateText.textContent = "Uploading to server...";
@@ -251,10 +275,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         name: file.name,
                         url: remoteURL
                     };
+                    // Persist to localStorage
                     localStorage.setItem(`files_${currentDocId}`, JSON.stringify(uploadedFiles));
+
+                    // Update iframe to remote URL (cleaner)
                     pdfFrame.src = remoteURL;
                 } else {
                     console.warn("Upload failed but file is shown locally:", response.statusText);
+                    // Still keep the local preview for the session
                     uploadedFiles[currentUploadContext] = {
                         name: file.name,
                         url: localURL,
@@ -265,6 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } catch (err) {
                 console.error("Upload error:", err);
+                // Notification instead of blocking alert
                 const notify = document.createElement('div');
                 notify.style = "position:fixed; bottom:20px; right:20px; background:#f44336; color:white; padding:10px; border-radius:5px; z-index:2000;";
                 notify.textContent = "Gagal upload ke server, tapi file tampil lokal.";
@@ -322,6 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // Theme Toggle
     const themeToggleBtn = document.getElementById('theme-toggle');
     themeToggleBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
@@ -335,6 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Profile Logout
     document.getElementById('profile-btn').addEventListener('click', () => {
         const dropdown = document.getElementById('profile-dropdown');
         dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
@@ -343,8 +374,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('logout-btn').addEventListener('click', (e) => {
         e.preventDefault();
         alert('Logging out...');
+        // window.location.href = 'login.html';
     });
 
+    // Filter Logic
     window.filterTable = () => {
         const karantina = document.getElementById('filter-karantina').value;
         const permohonan = document.getElementById('filter-permohonan').value;
@@ -371,6 +404,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.exportXLS = () => {
+        // Re-filter to get current view data
         const karantinaVal = document.getElementById('filter-karantina').value;
         const permohonanVal = document.getElementById('filter-permohonan').value;
         const tglAwal = document.getElementById('filter-tgl-awal').value;
@@ -386,6 +420,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return matchKarantina && matchPermohonan && matchDate;
         });
 
+        // Header Information Helpers
         const karantinaMap = { 'Hewan': 'KH', 'Ikan': 'KI', 'Tumbuhan': 'KT' };
         const permohonanMap = {
             'Ekspor': 'EK',
@@ -400,6 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const now = new Date();
         const waktuCetak = now.toISOString().slice(0, 19).replace('T', ' ');
 
+        // Generate HTML for Excel with Header and 18 Columns
         let tableHTML = `
             <!DOCTYPE html>
             <html>
@@ -466,9 +502,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <td>${row.komoditas}</td>
                     <td>${row.komoditas}</td>
                     <td>00000000</td>
-                    <td>0,00</td>
-                    <td>0,00</td>
-                    <td>kemasan</td>
+                    <td>${row.volP0}</td>
+                    <td>${row.volP5}</td>
+                    <td>${row.satuan}</td>
                 </tr>
             `;
         });
@@ -480,6 +516,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </html>
         `;
 
+        // Create Blob and Download
         const blob = new Blob([tableHTML], { type: 'application/vnd.ms-excel' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -490,8 +527,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.removeChild(a);
     };
 
+    // Initial Render
     filterTable();
 
+    // Restore Session
     const lastDocId = localStorage.getItem('lastDocId');
     if (lastDocId) {
         openDetail(parseInt(lastDocId));

@@ -2,33 +2,33 @@ document.addEventListener('DOMContentLoaded', () => {
     // Real Data from Excel files
     const tableData = [
         // Penahanan (2).xls
-        { id: 1, noDok: '2026-H2.0-7101.0-K.1.1-000007', tgl: '2026-01-22', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Daging Olahan Babi', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor' },
-        { id: 2, noDok: '2026-H2.0-7101.0-K.1.1-000003', tgl: '2026-01-07', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Daging Ayam', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor' },
-        { id: 3, noDok: '2026-H2.0-7101.0-K.1.1-000002', tgl: '2026-01-05', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Daging Olahan Babi', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor' },
-        { id: 4, noDok: '2026-H2.0-7101.0-K.1.1-000001', tgl: '2026-01-01', pengirim: 'NN', penerima: 'NN', asal: 'PHILIPINA', tujuan: 'INDONESIA - KOTA BITUNG', komoditas: 'Unggas Besar Kesayangan', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor' },
-        { id: 5, noDok: '2026-H2.0-7101.0-K.1.1-000005', tgl: '2026-01-14', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Daging Olahan Sapi', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor' },
-        { id: 6, noDok: '2026-H2.0-7101.0-K.1.1-000006', tgl: '2026-01-15', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Daging Olahan Babi', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor' },
-        { id: 7, noDok: '2026-H2.0-7101.0-K.1.1-000004', tgl: '2026-01-13', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Daging Babi', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor' },
+        { id: 1, noDok: '2026-H2.0-7101.0-K.1.1-000007', tgl: '2026-01-22', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Daging Olahan Babi', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor', volP0: '16,000', volP5: '16,000', satuan: 'kemasan' },
+        { id: 2, noDok: '2026-H2.0-7101.0-K.1.1-000003', tgl: '2026-01-07', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Daging Ayam', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor', volP0: '24,000', volP5: '24,000', satuan: 'kemasan' },
+        { id: 3, noDok: '2026-H2.0-7101.0-K.1.1-000002', tgl: '2026-01-05', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Daging Olahan Babi', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor', volP0: '16,000', volP5: '16,000', satuan: 'kemasan' },
+        { id: 4, noDok: '2026-H2.0-7101.0-K.1.1-000001', tgl: '2026-01-01', pengirim: 'NN', penerima: 'NN', asal: 'PHILIPINA', tujuan: 'INDONESIA - KOTA BITUNG', komoditas: 'Unggas Besar Kesayangan', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor', volP0: '218,000', volP5: '218,000', satuan: 'ekor' },
+        { id: 5, noDok: '2026-H2.0-7101.0-K.1.1-000005', tgl: '2026-01-14', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Daging Olahan Sapi', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor', volP0: '6,000', volP5: '6,000', satuan: 'kemasan' },
+        { id: 6, noDok: '2026-H2.0-7101.0-K.1.1-000006', tgl: '2026-01-15', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Daging Olahan Babi', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor', volP0: '8,000', volP5: '8,000', satuan: 'kemasan' },
+        { id: 7, noDok: '2026-H2.0-7101.0-K.1.1-000004', tgl: '2026-01-13', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Daging Babi', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Impor', volP0: '90,000', volP5: '90,000', satuan: 'kemasan' },
 
         // Penahanan (3).xls
-        { id: 8, noDok: '2026-I2.0-7101.0-K.1.1-000004', tgl: '2026-01-30', pengirim: 'No Name', penerima: 'No Name', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Ikan Teri', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Ikan', permohonan: 'Impor' },
-        { id: 9, noDok: '2026-I2.0-7101.0-K.1.1-000002', tgl: '2026-01-20', pengirim: 'No Name', penerima: 'No Name', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Ikan Patin', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Ikan', permohonan: 'Impor' },
-        { id: 10, noDok: '2026-I2.0-7101.0-K.1.1-000001', tgl: '2026-01-09', pengirim: 'No Name', penerima: 'No Name', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Sidat', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Ikan', permohonan: 'Impor' },
-        { id: 11, noDok: '2026-I2.0-7101.0-K.1.1-000003', tgl: '2026-01-28', pengirim: 'No Name', penerima: 'No Name', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Ikan Teri', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Ikan', permohonan: 'Impor' },
+        { id: 8, noDok: '2026-I2.0-7101.0-K.1.1-000004', tgl: '2026-01-30', pengirim: 'No Name', penerima: 'No Name', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Ikan Teri', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Ikan', permohonan: 'Impor', volP0: '0,500', volP5: '0,500', satuan: 'kilogram' },
+        { id: 9, noDok: '2026-I2.0-7101.0-K.1.1-000002', tgl: '2026-01-20', pengirim: 'No Name', penerima: 'No Name', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Ikan Patin', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Ikan', permohonan: 'Impor', volP0: '5,500', volP5: '5,500', satuan: 'kilogram' },
+        { id: 10, noDok: '2026-I2.0-7101.0-K.1.1-000001', tgl: '2026-01-09', pengirim: 'No Name', penerima: 'No Name', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Sidat', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Ikan', permohonan: 'Impor', volP0: '0,300', volP5: '0,300', satuan: 'kilogram' },
+        { id: 11, noDok: '2026-I2.0-7101.0-K.1.1-000003', tgl: '2026-01-28', pengirim: 'No Name', penerima: 'No Name', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'Ikan Teri', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Ikan', permohonan: 'Impor', volP0: '9,200', volP5: '9,200', satuan: 'kilogram' },
 
         // Penahanan (4).xls
-        { id: 12, noDok: '2026-T2.0-7101.0-K.1.1-000004', tgl: '2026-01-20', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'CABE KERING', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor' },
-        { id: 13, noDok: '2026-T2.0-7101.0-K.1.1-000002', tgl: '2026-01-15', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'JAMUR KERING', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor' },
-        { id: 14, noDok: '2026-T2.0-7101.0-K.1.1-000001', tgl: '2026-01-06', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'BUAH-BUAHAN', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor' },
-        { id: 15, noDok: '2026-T2.0-7101.0-K.1.1-000007', tgl: '2026-01-31', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'BAWANG DAUN', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor' },
-        { id: 16, noDok: '2026-T2.0-7101.0-K.1.1-000006', tgl: '2026-01-22', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'BUAH-BUAHAN', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor' },
-        { id: 17, noDok: '2026-T2.0-7101.0-K.1.1-000005', tgl: '2026-01-21', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'BIDARA/JUJUBE', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor' },
-        { id: 18, noDok: '2026-T2.0-7101.1-K.1.1-000001', tgl: '2026-01-05', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'BIJI CHIA', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor' },
+        { id: 12, noDok: '2026-T2.0-7101.0-K.1.1-000004', tgl: '2026-01-20', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'CABE KERING', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor', volP0: '1,000', volP5: '0,250', satuan: 'kemasan' },
+        { id: 13, noDok: '2026-T2.0-7101.0-K.1.1-000002', tgl: '2026-01-15', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'JAMUR KERING', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor', volP0: '2,000', volP5: '2,000', satuan: 'kemasan' },
+        { id: 14, noDok: '2026-T2.0-7101.0-K.1.1-000001', tgl: '2026-01-06', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'BUAH-BUAHAN', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor', volP0: '1,000', volP5: '1,000', satuan: 'kemasan' },
+        { id: 15, noDok: '2026-T2.0-7101.0-K.1.1-000007', tgl: '2026-01-31', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'BAWANG DAUN', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor', volP0: '0,600', volP5: '0,600', satuan: 'kilogram' },
+        { id: 16, noDok: '2026-T2.0-7101.0-K.1.1-000006', tgl: '2026-01-22', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'BUAH-BUAHAN', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor', volP0: '1,000', volP5: '1,000', satuan: 'kemasan' },
+        { id: 17, noDok: '2026-T2.0-7101.0-K.1.1-000005', tgl: '2026-01-21', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'BIDARA/JUJUBE', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor', volP0: '2,000', volP5: '2,000', satuan: 'kemasan' },
+        { id: 18, noDok: '2026-T2.0-7101.1-K.1.1-000001', tgl: '2026-01-05', pengirim: 'NN', penerima: 'NN', asal: 'CHINA', tujuan: 'INDONESIA - KOTA MANADO', komoditas: 'BIJI CHIA', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Tumbuhan', permohonan: 'Impor', volP0: '1,000', volP5: '1,000', satuan: 'kemasan' },
 
         // Penahanan (5).xls
-        { id: 19, noDok: '2026-H4.0-7103.0-K.1.1-000039', tgl: '2026-01-11', pengirim: 'PINDI KURNIAWAN', penerima: 'AGUNG WAHYU PRIBADI', asal: 'KOTA MANADO', tujuan: 'KEPULAUAN SANGIHE', komoditas: 'Burung Parkit', tkp: 'BKHIT Sulawesi Utara - Pelabuhan Laut Tahuna', ket: 'Lengkap', category: 'Hewan', permohonan: 'Domestik Masuk' },
-        { id: 20, noDok: '2026-H4.0-7101.1-K.1.1-000008', tgl: '2026-01-08', pengirim: 'MERLIN MATAHARI', penerima: 'MERLIN MATAHARI', asal: 'KOTA TERNATE', tujuan: 'KOTA MANADO', komoditas: 'Kucing', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Domestik Masuk' },
-        { id: 21, noDok: '2026-H4.0-7101.1-K.1.1-000005', tgl: '2026-01-06', pengirim: 'Aldaier Makatindu', penerima: 'Jouce Kansil', asal: 'KEPULAUAN SANGIHE', tujuan: 'KOTA MANADO', komoditas: 'Ayam', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Domestik Masuk' },
+        { id: 19, noDok: '2026-H4.0-7103.0-K.1.1-000039', tgl: '2026-01-11', pengirim: 'PINDI KURNIAWAN', penerima: 'AGUNG WAHYU PRIBADI', asal: 'KOTA MANADO', tujuan: 'KEPULAUAN SANGIHE', komoditas: 'Burung Parkit', tkp: 'BKHIT Sulawesi Utara - Pelabuhan Laut Tahuna', ket: 'Lengkap', category: 'Hewan', permohonan: 'Domestik Masuk', volP0: '10,000', volP5: '10,000', satuan: 'ekor' },
+        { id: 20, noDok: '2026-H4.0-7101.1-K.1.1-000008', tgl: '2026-01-08', pengirim: 'MERLIN MATAHARI', penerima: 'MERLIN MATAHARI', asal: 'KOTA TERNATE', tujuan: 'KOTA MANADO', komoditas: 'Kucing', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Domestik Masuk', volP0: '3,000', volP5: '3,000', satuan: 'ekor' },
+        { id: 21, noDok: '2026-H4.0-7101.1-K.1.1-000005', tgl: '2026-01-06', pengirim: 'Aldaier Makatindu', penerima: 'Jouce Kansil', asal: 'KEPULAUAN SANGIHE', tujuan: 'KOTA MANADO', komoditas: 'Ayam', tkp: 'BKHIT Sulawesi Utara - Bandara Sam Ratulangi', ket: 'Lengkap', category: 'Hewan', permohonan: 'Domestik Masuk', volP0: '3,000', volP5: '3,000', satuan: 'ekor' },
     ];
 
     const tableBody = document.getElementById('table-body');
@@ -40,12 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const viewerFilename = document.getElementById('viewer-filename');
     const WORKER_URL = 'https://gakkum-monitoring-api.karantinaikanbitung.workers.dev';
     const boxPemusnahan = document.getElementById('box-pemusnahan');
-    const boxPenolakan = document.getElementById('box-penolakan');
     let currentUploadContext = null;
-    let currentDocId = null; // To track which document we are working on
+    let currentDocId = null;
     let uploadedFiles = {};
 
-    // Render Table
     // Render Table
     function renderTable(data) {
         tableBody.innerHTML = '';
@@ -73,110 +71,154 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ... (rest of code) ...
-
-
-
     // Modal Logic
     window.openDetail = (id) => {
         currentDocId = id;
-        localStorage.setItem('activeDocId', id);
+        localStorage.setItem('lastDocId', id);
+
+        // Update Modal Title with Doc Suffix
+        const modalTitle = document.getElementById('modal-title');
+        const doc = tableData.find(d => d.id === id);
+        if (modalTitle && doc) {
+            // Get suffix: everything after the last 3 hyphens (e.g. K.1.1-000007)
+            // Format: YYYY-CATEGORY-CODE-SUFFIX-NUMBER -> we want SUFFIX-NUMBER
+            const parts = doc.noDok.split('-');
+            const suffix = parts.length > 2 ? parts.slice(-2).join('-') : doc.noDok;
+            modalTitle.textContent = `Detail Dokumen ${suffix}`;
+        }
+
         modal.style.display = 'flex';
         resetView();
         checkExistingFiles(id);
     };
 
     async function checkExistingFiles(id) {
-        const contexts = ['LI', 'Kronologi', 'PUL BAKET', 'Penolakan', 'Pemusnahan'];
-        const docIdAtStart = id;
+        // First, try to load from localStorage for immediate UI feedback
+        const savedData = localStorage.getItem(`files_${id}`);
+        if (savedData) {
+            uploadedFiles = JSON.parse(savedData);
+            Object.keys(uploadedFiles).forEach(ctx => {
+                updateUIIndicator(ctx, true);
+            });
+        }
 
+        const contexts = ['LI', 'Kronologi', 'PUL BAKET', 'Penolakan', 'Pemusnahan'];
         for (const ctx of contexts) {
             try {
-                // If user closed modal or switched doc, stop checking
-                if (currentDocId !== docIdAtStart) return;
+                const response = await fetch(`${WORKER_URL}/check/${id}/${ctx}`);
+                if (!response.ok) {
+                    // If not found on server, but we have a local flag or it was deleted, sync
+                    continue;
+                }
 
-                const response = await fetch(`${WORKER_URL}/check/${encodeURIComponent(id)}/${encodeURIComponent(ctx)}`);
                 const data = await response.json();
-
-                if (currentDocId !== docIdAtStart) return;
-
                 if (data.exists) {
                     uploadedFiles[ctx] = {
                         name: data.filename,
-                        url: `${WORKER_URL}/view/${encodeURIComponent(id)}/${encodeURIComponent(ctx)}/${encodeURIComponent(data.filename)}`
+                        url: `${WORKER_URL}/view/${id}/${ctx}/${data.filename}`
                     };
-
-                    // Update UI indicators
                     updateUIIndicator(ctx, true);
+                } else if (uploadedFiles[ctx] && !uploadedFiles[ctx].isLocal) {
+                    // Sync: if server says it doesn't exist and we thought it was a remote file, remove it
+                    delete uploadedFiles[ctx];
+                    updateUIIndicator(ctx, false);
                 }
             } catch (err) {
                 console.error(`Error checking ${ctx}:`, err);
             }
         }
+        // Save back to localStorage after remote check
+        localStorage.setItem(`files_${id}`, JSON.stringify(uploadedFiles));
+
+        // After checking files, if there's a saved context, load it
+        const savedCtx = localStorage.getItem('lastContext');
+        if (savedCtx && id === parseInt(localStorage.getItem('lastDocId'))) {
+            loadPreview(savedCtx);
+            // Open submenu if needed
+            if (['LI', 'Kronologi', 'PUL BAKET'].includes(savedCtx)) {
+                const submenu = document.getElementById('submenu-penahanan');
+                if (submenu) submenu.style.display = 'block';
+            }
+        }
     }
 
-    function updateUIIndicator(type, exists) {
-        if (!exists) return;
-
-        // Submenu items
-        const idMap = {
+    function updateUIIndicator(ctx, exists) {
+        const boxMap = {
+            'Pemusnahan': 'box-pemusnahan',
+            'Penolakan': 'box-penolakan',
             'LI': 'item-LI',
             'Kronologi': 'item-Kronologi',
-            'PUL BAKET': 'item-PUL_BAKET'
+            'PUL BAKET': 'item-PUL-BAKET'
         };
 
-        if (idMap[type]) {
-            const el = document.getElementById(idMap[type]);
-            if (el) el.classList.add('has-file');
-        }
+        const elementId = boxMap[ctx];
+        if (!elementId) return;
 
-        // Action boxes
-        if (type === 'Penolakan') {
-            if (boxPenolakan) boxPenolakan.classList.add('file-available');
-        }
-        if (type === 'Pemusnahan') {
-            if (boxPemusnahan) {
-                boxPemusnahan.classList.remove('red-box');
-                boxPemusnahan.classList.add('blue-box');
-                boxPemusnahan.classList.add('file-available');
+        const el = document.getElementById(elementId);
+        if (!el) return;
+
+        if (exists) {
+            el.classList.add('file-available');
+            if (el.classList.contains('action-box')) {
+                el.classList.remove('red-box');
+                el.classList.add('blue-box');
+            } else if (el.classList.contains('submenu-item')) {
+                el.classList.add('has-file');
+            }
+        } else {
+            el.classList.remove('file-available');
+            if (el.classList.contains('action-box')) {
+                if (ctx === 'Pemusnahan') {
+                    el.classList.remove('blue-box');
+                    el.classList.add('red-box');
+                }
+            } else if (el.classList.contains('submenu-item')) {
+                el.classList.remove('has-file');
             }
         }
 
-        // If this is the context currently being viewed, show the file!
-        if (type === currentUploadContext && uploadedFiles[type]) {
-            showPdf(uploadedFiles[type].name, uploadedFiles[type].url);
+        // If this is the active context, refresh preview if it exists
+        if (ctx === currentUploadContext) {
+            if (exists && uploadedFiles[ctx]) {
+                showPdf(uploadedFiles[ctx].name, uploadedFiles[ctx].url);
+            } else {
+                previewContainer.classList.remove('hidden');
+                fileViewer.classList.add('hidden');
+            }
         }
     }
 
     closeModalBtn.addEventListener('click', () => {
         modal.style.display = 'none';
-        localStorage.removeItem('activeDocId');
-        localStorage.removeItem('activeContext');
+        localStorage.removeItem('lastDocId');
+        localStorage.removeItem('lastContext');
+        // Reset Title
+        const modalTitle = document.getElementById('modal-title');
+        if (modalTitle) modalTitle.textContent = 'Detail Dokumen';
     });
 
     window.onclick = (event) => {
         if (event.target === modal) {
             modal.style.display = 'none';
-            localStorage.removeItem('activeDocId');
-            localStorage.removeItem('activeContext');
+            localStorage.removeItem('lastDocId');
+            localStorage.removeItem('lastContext');
+            // Reset Title
+            const modalTitle = document.getElementById('modal-title');
+            if (modalTitle) modalTitle.textContent = 'Detail Dokumen';
         }
     };
 
     function resetView() {
-        // Reset preview area
         previewContainer.classList.remove('hidden');
         fileViewer.classList.add('hidden');
-
-        // Reset uploaded files state
         uploadedFiles = {};
-
-        // Reset UI indicators
-        document.querySelectorAll('.has-file').forEach(el => el.classList.remove('has-file'));
+        // Reset submenus and boxes
+        document.querySelectorAll('.submenu-item').forEach(el => el.classList.remove('has-file'));
         document.querySelectorAll('.file-available').forEach(el => el.classList.remove('file-available'));
-
-        // Reset Pemusnahan box color
-        boxPemusnahan.classList.remove('blue-box');
-        boxPemusnahan.classList.add('red-box');
+        if (boxPemusnahan) {
+            boxPemusnahan.classList.remove('blue-box');
+            boxPemusnahan.classList.add('red-box');
+        }
     }
 
     // Sidebar Interactions
@@ -187,20 +229,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.loadPreview = (type) => {
         currentUploadContext = type;
-        localStorage.setItem('activeContext', type);
-
-        // Check if file already exists for this context
+        localStorage.setItem('lastContext', type);
         if (uploadedFiles[type]) {
             showPdf(uploadedFiles[type].name, uploadedFiles[type].url);
         } else {
-            // Reset UI for new selection (Empty State)
             previewContainer.classList.remove('hidden');
             fileViewer.classList.add('hidden');
-            document.querySelector('.empty-state p').textContent = `Upload file untuk ${type}`;
+            const emptyStateP = document.querySelector('.empty-state p');
+            if (emptyStateP) emptyStateP.textContent = `Upload file untuk ${type}`;
         }
     };
 
-    // File Upload Simulation
     window.triggerFileUpload = () => {
         document.getElementById('file-input').click();
     };
@@ -208,41 +247,65 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('file-input').addEventListener('change', async (e) => {
         if (e.target.files.length > 0) {
             const file = e.target.files[0];
-            const formData = new FormData();
-            formData.append('file', file);
 
-            // Change UI to "Uploading..."
+            // 1. Immediate Local Preview
+            const localURL = URL.createObjectURL(file);
+            showPdf(file.name, localURL);
+
+            // Update UI indicator immediately
+            updateUIIndicator(currentUploadContext, true);
+
+            // 2. Attempt Background Upload
             const emptyStateText = document.querySelector('.empty-state p');
-            const originalText = emptyStateText.textContent;
-            emptyStateText.textContent = "Uploading to server...";
+            const originalText = emptyStateText ? emptyStateText.textContent : "";
+            if (emptyStateText) emptyStateText.textContent = "Uploading to server...";
 
             try {
-                const uploadUrl = `${WORKER_URL}/upload/${encodeURIComponent(currentDocId)}/${encodeURIComponent(currentUploadContext)}/${encodeURIComponent(file.name)}`;
+                const uploadUrl = `${WORKER_URL}/upload/${currentDocId}/${currentUploadContext}/${encodeURIComponent(file.name)}`;
                 const response = await fetch(uploadUrl, {
                     method: 'PUT',
                     body: file,
-                    headers: {
-                        'Content-Type': file.type
-                    }
+                    headers: { 'Content-Type': file.type }
                 });
 
                 if (response.ok) {
-                    const fileURL = `${WORKER_URL}/view/${encodeURIComponent(currentDocId)}/${encodeURIComponent(currentUploadContext)}/${encodeURIComponent(file.name)}`;
+                    const remoteURL = `${WORKER_URL}/view/${currentDocId}/${currentUploadContext}/${encodeURIComponent(file.name)}`;
                     uploadedFiles[currentUploadContext] = {
                         name: file.name,
-                        url: fileURL
+                        url: remoteURL
                     };
+                    // Persist to localStorage
+                    localStorage.setItem(`files_${currentDocId}`, JSON.stringify(uploadedFiles));
 
-                    showPdf(file.name, fileURL);
-                    updateUIIndicator(currentUploadContext, true);
+                    // Update iframe to remote URL (cleaner)
+                    pdfFrame.src = remoteURL;
                 } else {
-                    alert("Upload failed: " + response.statusText);
-                    emptyStateText.textContent = originalText;
+                    console.warn("Upload failed but file is shown locally:", response.statusText);
+                    // Still keep the local preview for the session
+                    uploadedFiles[currentUploadContext] = {
+                        name: file.name,
+                        url: localURL,
+                        isLocal: true
+                    };
+                    localStorage.setItem(`files_${currentDocId}`, JSON.stringify(uploadedFiles));
+                    if (emptyStateText) emptyStateText.textContent = originalText;
                 }
             } catch (err) {
                 console.error("Upload error:", err);
-                alert("Upload error. Check console.");
-                emptyStateText.textContent = originalText;
+                // Notification instead of blocking alert
+                const notify = document.createElement('div');
+                notify.style = "position:fixed; bottom:20px; right:20px; background:#f44336; color:white; padding:10px; border-radius:5px; z-index:2000;";
+                notify.textContent = "Gagal upload ke server, tapi file tampil lokal.";
+                document.body.appendChild(notify);
+                setTimeout(() => notify.remove(), 3000);
+
+                uploadedFiles[currentUploadContext] = {
+                    name: file.name,
+                    url: localURL,
+                    isLocal: true
+                };
+                localStorage.setItem(`files_${currentDocId}`, JSON.stringify(uploadedFiles));
+                if (emptyStateText) emptyStateText.textContent = originalText;
             }
         }
     });
@@ -254,19 +317,36 @@ document.addEventListener('DOMContentLoaded', () => {
         pdfFrame.src = fileUrl;
     }
 
-    window.resetUpload = () => {
-        // Remove file from state
-        if (currentUploadContext && uploadedFiles[currentUploadContext]) {
-            delete uploadedFiles[currentUploadContext];
-        }
+    window.resetUpload = async () => {
+        if (!currentUploadContext || !uploadedFiles[currentUploadContext]) return;
 
-        previewContainer.classList.remove('hidden');
-        fileViewer.classList.add('hidden');
-        document.getElementById('file-input').value = '';
+        const ctx = currentUploadContext;
+        const fileToDelete = uploadedFiles[ctx];
 
-        if (currentUploadContext === 'Pemusnahan') {
-            boxPemusnahan.classList.remove('blue-box');
-            boxPemusnahan.classList.add('red-box');
+        const confirmDelete = confirm(`Hapus file ${fileToDelete.name} dari server?`);
+        if (!confirmDelete) return;
+
+        try {
+            const deleteUrl = `${WORKER_URL}/delete/${currentDocId}/${ctx}/${encodeURIComponent(fileToDelete.name)}`;
+            const response = await fetch(deleteUrl, { method: 'DELETE' });
+
+            if (response.ok) {
+                delete uploadedFiles[ctx];
+                localStorage.setItem(`files_${currentDocId}`, JSON.stringify(uploadedFiles));
+                updateUIIndicator(ctx, false);
+
+                // Show empty state
+                previewContainer.classList.remove('hidden');
+                fileViewer.classList.add('hidden');
+                document.getElementById('file-input').value = '';
+                const emptyStateP = document.querySelector('.empty-state p');
+                if (emptyStateP) emptyStateP.textContent = `Upload file untuk ${ctx}`;
+            } else {
+                alert("Gagal menghapus file dari server: " + response.statusText);
+            }
+        } catch (err) {
+            console.error("Delete error:", err);
+            alert("Terjadi kesalahan saat menghapus file.");
         }
     };
 
@@ -421,9 +501,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <td>${row.komoditas}</td>
                     <td>${row.komoditas}</td>
                     <td>00000000</td>
-                    <td>0,00</td>
-                    <td>0,00</td>
-                    <td>kemasan</td>
+                    <td>${row.volP0}</td>
+                    <td>${row.volP5}</td>
+                    <td>${row.satuan}</td>
                 </tr>
             `;
         });
@@ -449,17 +529,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial Render
     filterTable();
 
-    // Restore State from localStorage
-    const savedDocId = localStorage.getItem('activeDocId');
-    const savedContext = localStorage.getItem('activeContext');
-
-    if (savedDocId) {
-        openDetail(parseInt(savedDocId));
-        if (savedContext) {
-            // Give a small delay for checkExistingFiles to potentially fetch data
-            setTimeout(() => {
-                loadPreview(savedContext);
-            }, 500);
-        }
+    // Restore Session
+    const lastDocId = localStorage.getItem('lastDocId');
+    if (lastDocId) {
+        openDetail(parseInt(lastDocId));
     }
 });
