@@ -247,68 +247,81 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('file-input').addEventListener('change', async (e) => {
         if (e.target.files.length > 0) {
             const file = e.target.files[0];
+            const progressContainer = document.getElementById('upload-progress-container');
+            const progressFill = document.getElementById('upload-progress-fill');
+            const progressText = document.getElementById('upload-percentage');
+            const uploadBtn = document.getElementById('upload-btn');
+            const emptyStateP = document.querySelector('.empty-state p');
 
-            // 1. Immediate Local Preview
-            const localURL = URL.createObjectURL(file);
-            showPdf(file.name, localURL);
+            // Show progress UI
+            progressContainer.classList.remove('hidden');
+            uploadBtn.classList.add('hidden');
+            if (emptyStateP) emptyStateP.textContent = `Uploading ${file.name}...`;
 
-            // Update UI indicator immediately
-            updateUIIndicator(currentUploadContext, true);
+            const xhr = new XMLHttpRequest();
+            const uploadUrl = `${WORKER_URL}/upload/${currentDocId}/${currentUploadContext}/${encodeURIComponent(file.name)}`;
 
-            // 2. Attempt Background Upload
-            const emptyStateText = document.querySelector('.empty-state p');
-            const originalText = emptyStateText ? emptyStateText.textContent : "";
-            if (emptyStateText) emptyStateText.textContent = "Uploading to server...";
+            xhr.upload.onprogress = (event) => {
+                if (event.lengthComputable) {
+                    const percent = (event.loaded / event.total) * 100;
+                    progressFill.style.width = percent + '%';
+                    progressText.textContent = Math.round(percent) + '%';
+                }
+            };
 
-            try {
-                const uploadUrl = `${WORKER_URL}/upload/${currentDocId}/${currentUploadContext}/${encodeURIComponent(file.name)}`;
-                const response = await fetch(uploadUrl, {
-                    method: 'PUT',
-                    body: file,
-                    headers: { 'Content-Type': file.type }
-                });
+            xhr.onload = () => {
+                progressContainer.classList.add('hidden');
+                uploadBtn.classList.remove('hidden');
 
-                if (response.ok) {
+                if (xhr.status >= 200 && xhr.status < 300) {
                     const remoteURL = `${WORKER_URL}/view/${currentDocId}/${currentUploadContext}/${encodeURIComponent(file.name)}`;
                     uploadedFiles[currentUploadContext] = {
                         name: file.name,
                         url: remoteURL
                     };
-                    // Persist to localStorage
                     localStorage.setItem(`files_${currentDocId}`, JSON.stringify(uploadedFiles));
 
-                    // Update iframe to remote URL (cleaner)
-                    pdfFrame.src = remoteURL;
+                    // Update UI and show file immediately
+                    updateUIIndicator(currentUploadContext, true);
+                    showPdf(file.name, remoteURL);
                 } else {
-                    console.warn("Upload failed but file is shown locally:", response.statusText);
-                    // Still keep the local preview for the session
-                    uploadedFiles[currentUploadContext] = {
-                        name: file.name,
-                        url: localURL,
-                        isLocal: true
-                    };
-                    localStorage.setItem(`files_${currentDocId}`, JSON.stringify(uploadedFiles));
-                    if (emptyStateText) emptyStateText.textContent = originalText;
+                    handleUploadError(file, "Upload failed");
                 }
-            } catch (err) {
-                console.error("Upload error:", err);
-                // Notification instead of blocking alert
-                const notify = document.createElement('div');
-                notify.style = "position:fixed; bottom:20px; right:20px; background:#f44336; color:white; padding:10px; border-radius:5px; z-index:2000;";
-                notify.textContent = "Gagal upload ke server, tapi file tampil lokal.";
-                document.body.appendChild(notify);
-                setTimeout(() => notify.remove(), 3000);
+            };
 
-                uploadedFiles[currentUploadContext] = {
-                    name: file.name,
-                    url: localURL,
-                    isLocal: true
-                };
-                localStorage.setItem(`files_${currentDocId}`, JSON.stringify(uploadedFiles));
-                if (emptyStateText) emptyStateText.textContent = originalText;
-            }
+            xhr.onerror = () => {
+                progressContainer.classList.add('hidden');
+                uploadBtn.classList.remove('hidden');
+                handleUploadError(file, "Network error");
+            };
+
+            xhr.open('PUT', uploadUrl);
+            xhr.setRequestHeader('Content-Type', file.type);
+            xhr.send(file);
         }
     });
+
+    function handleUploadError(file, errorMsg) {
+        console.error("Upload error:", errorMsg);
+        const localURL = URL.createObjectURL(file);
+
+        // Notification
+        const notify = document.createElement('div');
+        notify.style = "position:fixed; bottom:20px; right:20px; background:#f44336; color:white; padding:10px; border-radius:5px; z-index:2000;";
+        notify.textContent = "Gagal upload ke server, tapi file tampil lokal.";
+        document.body.appendChild(notify);
+        setTimeout(() => notify.remove(), 3000);
+
+        uploadedFiles[currentUploadContext] = {
+            name: file.name,
+            url: localURL,
+            isLocal: true
+        };
+        localStorage.setItem(`files_${currentDocId}`, JSON.stringify(uploadedFiles));
+        updateUIIndicator(currentUploadContext, true);
+        showPdf(file.name, localURL);
+    }
+
 
     function showPdf(filename, fileUrl) {
         previewContainer.classList.add('hidden');

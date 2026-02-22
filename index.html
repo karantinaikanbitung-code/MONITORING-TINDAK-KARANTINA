@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Monitoring Dashboard</title>
+    <title>Monitoring Gakum Sulut</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -148,7 +148,14 @@
                         <div class="empty-state">
                             <i class="fa-solid fa-cloud-arrow-up upload-icon" id="upload-trigger"></i>
                             <p>Belum ada file diupload</p>
-                            <button class="btn btn-primary" onclick="triggerFileUpload()">Upload File</button>
+                            <div id="upload-progress-container" class="upload-progress-container hidden">
+                                <div class="progress-bar">
+                                    <div id="upload-progress-fill" class="progress-fill"></div>
+                                </div>
+                                <span id="upload-percentage">0%</span>
+                            </div>
+                            <button class="btn btn-primary" id="upload-btn" onclick="triggerFileUpload()">Upload
+                                File</button>
                             <input type="file" id="file-input" hidden>
                         </div>
                     </div>
